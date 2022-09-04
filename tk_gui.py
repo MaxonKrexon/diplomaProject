@@ -35,7 +35,7 @@ class Window:
         self.mapFrame = LabelFrame(self.root, text="Карта местности", font="Arial 12")
         self.mapFrame.grid(row=0, rowspan=3, column=0, columnspan=4, sticky=N + S + W + E, padx=10)
 
-        self.mapFile = pilImage.open(r"map\FIRMS_24hrs[@103.3,54.7,12z].jpg")
+        self.mapFile = pilImage.open(r"FIRMS_24hrs[@103.3,54.7,12z].jpg")
         w, h = self.root.winfo_screenwidth(), self.root.winfo_screenheight()
         self.img = ImageTk.PhotoImage(self.mapFile.resize((round(0.75*w),round(0.75*h)), Resampling.LANCZOS))
 
