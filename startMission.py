@@ -61,13 +61,9 @@ def startMission(bases = None):
     realObjects = np.array(realObjects)
     realGatheringPoint = np.array([gatheringPointLocal[0] * x_pixel_value, gatheringPointLocal[1] * y_pixel_value])
     realBases=np.zeros((len(bases),2))
-    # print(bases)
     for j in range(len(bases)):
-        # bottomRightLocal[1] - (int(lines[7+j].split(",")[y]) - topLeftLocal[1])
-        # realBases[j] = np.array([(bases[j][x]- topLeftLocal[0])*x_pixel_value, (bottomRightLocal[1] - bases[j][y] - topLeftLocal[1])*y_pixel_value])
         realBases[j][x] = (int(bases[j][x]) - topLeftLocal[0]) * x_pixel_value
         realBases[j][y] = (bottomRightLocal[1] - (int(bases[j][y]) - topLeftLocal[1])) * y_pixel_value
-    # print(realBases)
 
 
     if shape == "Single" and len(bases) == 1:
@@ -79,6 +75,3 @@ def startMission(bases = None):
         distribution.start(realBases, realObjects)
 
     mb.showinfo("Уведомление","Расчёт окончен!")
-
-
-# startMission([[544,678],[578,952]])
