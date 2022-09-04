@@ -244,7 +244,6 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
         # # Разность между векторами скорости и выхода позволяет однозначно
         # # определить нужную точку выхода для гладкого движения
 
-        # print("\nvel1 = \n", vel1)
 
         xmNext = keyPoints[j + 1][0]
         ymNext = keyPoints[j + 1][1]
@@ -275,8 +274,6 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
         rotationSign2 = (xsh[ind + 1] - qq[0][j]) * (ysh[ind + 1] - ym) - (xsh[ind + 1] - xm) * (
                 ysh[ind + 1] - qq[1][j])
 
-        # print("\nrotationSign2 = ", rotationSign2)
-
         vel2 = None
         A = np.array([qq[0][j] - xfh[ind], qq[1][j] - yfh[ind], 0.0], np.float32)
         B = np.array([0.0, 0.0, 1.0], np.float32)
@@ -285,7 +282,6 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
         elif rotationSign2 < 0:
             vel2 = -1.0 * np.cross(A, B)
         vel2 = np.reshape(vel2, (3, 1))
-        # print("\nvel2 = \n", vel2)
 
         # Вектор выхода из окружности в середину
         vecOut2 = np.array([[xmNext - xfh[ind]], [ymNext - yfh[ind]]], np.float32)
@@ -340,16 +336,8 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
         # Псевдоскаляр радиусов содержащих точку входа и точку выхода
         curvProd21 = vect31[0] * vect21[1] - vect21[0] * vect31[1]
 
-        # print("\nvect11 =\n", vect11)
-        # print("\nvect21 =\n", vect21)
-        # print("\nvect31 =\n", vect31)
-        # print("\ncurvProd11 = ", curvProd11)
-        # print("\ncurvProd21 = ", curvProd21)
+
         if np.sign(curvProd11) == np.sign(curvProd21):
-            # print("\npointOut1[0][j] = ", pointOut1[0][j])
-            # print("\npointOut1[0][j] = ", pointOut1[1][j])
-            # print("\npointIn1[0][j] = ", pointIn1[0][j])
-            # print("\npointOut1[0][j] = ", pointIn1[1][j])
             fis1 = 2 * pi - np.arccos(((pointOut1[0][j] - qq[0][j]) * (pointIn1[0][j] - qq[0][j]) + (
                     pointOut1[1][j] - qq[1][j]) * (pointIn1[1][j] - qq[1][j])) / (np.sqrt(
                 (pointOut1[0][j] - qq[0][j]) ** 2 + (pointOut1[1][j] - qq[1][j]) ** 2) * np.sqrt(
@@ -366,11 +354,6 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
         curvProd12 = vect12[0] * vect32[1] - vect32[0] * vect12[1]
         curvProd22 = vect32[0] * vect22[1] - vect22[0] * vect32[1]
 
-        # print("\nvect12 =\n", vect12)
-        # print("\nvect22 =\n", vect22)
-        # print("\nvect32 =\n", vect32)
-        # print("\ncurvProd12 = ", curvProd12)
-        # print("\ncurvProd22 = ", curvProd22)
 
         if np.sign(curvProd12) == np.sign(curvProd22):
             fis2 = 2 * pi - np.arccos(((pointOut2[0][j] - qq[0][j]) * (pointIn2[0][j] - qq[0][j]) + (
@@ -382,9 +365,6 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
                     pointOut2[1][j] - qq[1][j]) * (pointIn2[1][j] - qq[1][j])) / (np.sqrt(
                 (pointOut2[0][j] - qq[0][j]) ** 2 + (pointOut2[1][j] - qq[1][j]) ** 2) * np.sqrt(
                 (pointIn2[0][j] - qq[0][j]) ** 2 + (pointIn2[1][j] - qq[1][j]) ** 2)))
-
-        # print("\nfis1 = ", fis1)
-        # print("\nfis2 = ", fis2)
 
         if fis1 < fis2:
             xIn[ind] = pointIn1[0][j]
@@ -429,7 +409,6 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
             aux[j] = complex(P[j][0], P[j][1])
 
         L = sum(abs(np.diff(aux)))
-        # print("\nL =", L)
 
         t = np.zeros(np.size(P, 0), complex)
         for m in range(np.size(P, 0)):
@@ -437,7 +416,6 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
 
         Tcurv[k] = sum(abs(np.diff(t)))
 
-    # print(Tcurv)
 
     Ln1 = np.zeros((np.size(qq, 1), 2))
     Ln2 = np.zeros((np.size(qq, 1), 2))
@@ -522,8 +500,6 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
             psi1k[j] = psi1[0]
             psi2k[j] = psi2[0]
 
-    print("\npsi1k =\n", psi1k)
-    print("\npsi2k =\n", psi2k)
 
     #######################################################################################
     ############------------БЛОК-ПОСТРОЕНИЯ-ТРАЕКТОРИИ-------------------##################
@@ -622,8 +598,6 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
 
         time_init = time_init + Tcurv[k] + Ts[k + 1]
 
-    # Xt = Xt[1:]
-    # Yt = Yt[1:]
     xt1 = np.array(xt1)
     yt1 = np.array(yt1)
 
