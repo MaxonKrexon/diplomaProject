@@ -15,7 +15,6 @@ class Window:
         self.root = Tk()
         self.root.title(title)
         self.root.state('zoomed')
-        # self.root.geometry(f"{width}x{height}")
         self.root.resizable(resizable[0], resizable[1])
         if iconPath is not None:
             self.root.iconbitmap(iconPath)
@@ -27,10 +26,6 @@ class Window:
         self.root.mainloop()
 
     def drawWidgets(self):
-        # topFrame = Frame(self.root)
-        # bottonFrame = Frame(self.root)
-        # topFrame.pack(anchor = W,fill = X)
-        # bottonFrame.pack(anchor=W,fill = X)
 
         self.mapFrame = LabelFrame(self.root, text="Карта местности", font="Arial 12")
         self.mapFrame.grid(row=0, rowspan=3, column=0, columnspan=4, sticky=N + S + W + E, padx=10)
@@ -98,8 +93,7 @@ class Window:
         state = 1
         posX = 2
         posY = 3
-        # file = open('taskInfo.txt','r',encoding="UTF-8")
-        # shape = file.readline(2)
+        
         for j in range(len(self.drones)):
             if self.drones[j][state].get() == 1:
                 base.append([self.drones[j][posX],self.drones[j][posY]])
