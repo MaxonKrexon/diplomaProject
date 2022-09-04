@@ -55,10 +55,6 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
         coordsMiddle[j][0] = (float(qq[0][j] + qq[0][j + 1]) / 2)
         coordsMiddle[j][1] = (float(qq[1][j] + qq[1][j + 1]) / 2)
 
-    # print('\nКоординаты старта\n', base)
-    # print('\nКоординаты середин\n', coordsMiddle)
-    # print('\nКоординаты конца\n', coords)
-
     keyPoints = np.vstack((base, coordsMiddle, coords))
 
     print('\nКлючевые точки =\n', keyPoints)
@@ -88,7 +84,7 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
     rootsAvr = np.zeros((np.size(qq, 1), 4))  # <- массив, где будут храниться усреднённые корни (x1,y1,x2,y2)
     xfh = np.zeros((np.size(qq, 1), 1))
     yfh = np.zeros((np.size(qq, 1), 1))
-    # tolerance = 0.0045  # <- погрешность указана в аргументах функции
+    tolerance = 0.0045  # <- погрешность указана в аргументах функции
     precision = 0.0015  # <- точность расчёта
 
     # Первая половина серединных касательных (выход из окружности)
@@ -114,7 +110,6 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
         exit1 = 0  # <- счётчик корней для выхода из окружности x1 и y1
         exit2 = 0  # <- счётчик корней для выхода из окружности x2 и y2
 
-        # print("\nroots =\n",roots[j])
 
         for m in np.arange(i - 1):
             if roots[j][m][0] < min(roots[j][:, :-1][0]) + 0.1:
@@ -135,8 +130,6 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
         x2 = rootsAvr[j][2] / exit2  # <- усреднённые x2 для выхода из окружности
         y2 = rootsAvr[j][3] / exit2  # <- усреднённые y2 для выхода из окружности
 
-        # print("\nroots =\n",rootsAvr[j])
-
         if j == 0:
             xfh = np.vstack((x1, x2))
             yfh = np.vstack((y1, y2))
@@ -144,7 +137,6 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
             xfh = np.vstack((xfh, x1, x2))
             yfh = np.vstack((yfh, y1, y2))
 
-    # print('\ncfh =\n',np.array([xfh, yfh]))
 
     ### Вторая половина серединных касательных (вход в окружность) ###
     # xsh = x second half; ysh = y second half
@@ -204,7 +196,6 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
 
         # Конец цикла
 
-    # print('\ncsh =\n',np.array([xsh, ysh]))
     ### Осуществление соответствия точек выхода точкам входа ###
 
     ind = 0
@@ -266,11 +257,7 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
         velNorm1 = np.divide(vel1, np.sqrt(vel1[0] ** 2 + vel1[1] ** 2 + vel1[2] ** 2))
         # <- Разность вектора скорости и вектора выхода
         vecDifference1 = np.array(vecOutNorm1 - [[velNorm1[0]], [velNorm1[1]]], np.float32)
-
-        # print("\nvec_out1 =\n", vecOut1)
-        # print("\nvec_out1-NORM =\n", vecOutNorm1)
-        # print("\nvelNorm1 =\n", velNorm1)
-        # print("\nvecDiff1 =\n", vecDifference1)
+        
 
         if float(np.sqrt(vecDifference1[0] ** 2 + vecDifference1[1] ** 2)) < 0.001:
             Xpv_pre1[j] = xfh[ind]
@@ -308,11 +295,7 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
         velNorm2 = np.divide(vel2, np.sqrt(vel2[0] ** 2 + vel2[1] ** 2 + vel2[2] ** 2))
         # Разность вектора скорости и вектора выхода
         vecDifference2 = np.array(vecOutNorm2 - [[velNorm2[0]], [velNorm2[1]]], np.float32)
-
-        # print("\nvec_out2 =\n", vecOut2)
-        # print("\nvec_out2-NORM =\n", vecOutNorm2)
-        # print("\nvelNorm2 =\n", velNorm2)
-        # print("\nvecDiff2 =\n", vecDifference2)
+        
 
         if float(np.sqrt(vecDifference2[0] ** 2 + vecDifference2[1] ** 2)) < 0.001:
             Xpv_pre2[j] = xfh[ind]
@@ -332,10 +315,6 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
     pointIn2 = np.array([Xpvh_pre2, Ypvh_pre2], np.float32)
     pointOut2 = np.array([Xpv_pre2, Ypv_pre2], np.float32)
 
-    # print("Point In 1 =\n", pointIn1)
-    # print("\nPoint Out 1 =\n", pointOut1)
-    # print("\nPoint In 2 =\n", pointIn2)
-    # print("\nPoint Out 2 =\n", pointOut2)
 
     ind = 0
     pi = 3.14159265
@@ -424,11 +403,7 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
             Ts[ind] = (2 * pi * qq[2][j] + (fis2 * qq[2][j])) / V
 
         ind += 1
-    #
-    # print("\nxIn, yIn =\n", np.float32([xIn, yIn]))
-    # print("\nxOut, yOut =\n", np.float32([xOut, yOut]))
-    # print("\narcL =\n", np.float32(arcL))
-    # print("\nTs =\n", np.float32(Ts))
+
 
     # Вычисление времени движения по прямым
     TsL1 = np.zeros(np.size(xIn, 0))
@@ -739,17 +714,11 @@ def start(base=None, objects=None, velocity=1, offset = 0, tolerance = 0.0045):
                     index += 1
 
     # Разделение траекторий между окружностями
-    # trajectory = np.zeros((np.size(xIn) - 1, 2, 30))
-    # for j in range(np.size(xIn) - 1):
-    #     trajectory[j] = Xt[j], Yt[j]
-    #
-    #     print(np.count_nonzero(trajectory[j]))
-
 
     x = 0
     y = 1
 
-
+    
     file = open('coordinates.txt','a',encoding="UTF-8")
 
     for j in range(np.size(xt11)):
