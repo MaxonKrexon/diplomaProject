@@ -10,17 +10,17 @@ in boundaries that you already know? That would be extreamly helpful! This softw
 4) Calculate the route from starting point to areas and back
 5) Get the information from sensors and combine it with coordinates on map
 
-A little bit through the sctipts:
-addTaskWindow.py - script that creates new window with map and functionality to set real coordinates, select areas to explore
-addForCoords.py - script that creates new window every time you need to set read coordinates
-colors.py - set of colors to use in graphics etc
-distribution - script that distribure areas to explore between starting points by distance
-getData.py - script for modelling heat map of explored surface and show it in new window
-myFuncs.py - script with custom funcs that shoud work as their analogies in MATLAB
-routePlanning.py - script that calculates route for every single UAV
-smoothing.py - scipt that used to make route more real
-startMission.py - script that combine all information about areas to explore, starting positions and starts computing
-tk_gui.py - main window script
+A little bit through the sctipts: <br>
+addTaskWindow.py - script that creates new window with map and functionality to set real coordinates, select areas to explore <br>
+addForCoords.py - script that creates new window every time you need to set read coordinates <br>
+colors.py - set of colors to use in graphics etc <br>
+distribution - script that distribure areas to explore between starting points by distance <br>
+getData.py - script for modelling heat map of explored surface and show it in new window <br>
+myFuncs.py - script with custom funcs that shoud work as their analogies in MATLAB <br>
+routePlanning.py - script that calculates route for every single UAV <br>
+smoothing.py - scipt that used to make route more real <br>
+startMission.py - script that combine all information about areas to explore, starting positions and starts computing <br>
+tk_gui.py - main window script <br>
 
 Данное ПО было разработано в качестве дипломной работы бакалавра по направлению "Мехатроника и Робототехника" в мае-июне 2022 года. Представляет собой интерактивное графическое приложение для решения задач автоматизации процесса исследования/наблюдения местности.
 
