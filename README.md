@@ -1,8 +1,8 @@
 <h1> diplomaProject</h1>
-This software was made as diploma project in Robotics in may-june 2022. It is interactive graphic application for automatization of area surveillance and exploring processes.
-It was implemented using <b>python 3.8</b> with <b>numpy, sympy and tkinter</b> libraries.There is a situation where this software could be used:<br><p>
-<i>Imagine you are a fire department worker and you need to know how big is area of forest fire. Of course it's better to know from the height and UAV's
-will help you with that, but you are a single person and you can pilot only one UAV at the time. What if you had a dozen of UAV that could be group and explore area in boundaries that you already know? That would be extreamly helpful! This software is the solution. Here you can:</i><br>
+<p>This software was made as diploma project in Robotics in may-june 2022. It is interactive graphic application for automatization of area surveillance and exploring processes.
+It was implemented using <b>python 3.8</b> with <b>numpy, sympy and tkinter</b> libraries.There is a situation where this software could be used:</p><br>
+<p><i>Imagine you are a fire department worker and you need to know how big is area of forest fire. Of course it's better to know from the height and UAV's
+will help you with that, but you are a single person and you can pilot only one UAV at the time. What if you had a dozen of UAV that could be group and explore area in boundaries that you already know? That would be extreamly helpful! This software is the solution. Here you can:</i></p><br>
 <br>
 <li> Load your own map as image and set its real coordinates (in degrees)
 <li> Select areas that you need to explore
