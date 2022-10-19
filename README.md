@@ -19,7 +19,7 @@ will help you with that, but you are a single person and you can pilot only one 
 <b>routePlanning.py</b> - script that calculates route for every single UAV (original language: MATLAB) <br>
 <b>smoothing.py</b> - scipt that used to make route more real <br>
 <b>startMission.py</b> - script that combine all information about areas to explore, starting positions and starts computing <br>
-<b>tk_gui.py</b> - script of main window with list of UAVs, map, buttons and feedback (didn't implemented) <br>
+<b>tk_gui.py</b> - START. Script of main window with list of UAVs, map, buttons and feedback (didn't implemented) <br>
 
 <h4> Here is some screenshots:</h4>
 <a href="tk_gui.py">
